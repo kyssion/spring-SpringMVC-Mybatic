@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>	
+	<!-- 使用配置信息可以在上下文中进行配置 这里配置的信息可以在上下中使用${xx}访问到-->
+	<properties resource="jdbc.properties"><!-- 这里的第一句使用了配置文件属性这个属性会搜索一个属将配置信息传入进来效果和在文件中直接进行配置的方法是相同的 -->
+		<property name="myproperty" value="123123"/>
+	</properties>
+	<!-- setting属性 -->
+	<settings>
+		<!-- 打印查询语句 -->
+		<setting name="logImpl" value="STDOUT_LOGGING" />
+		<!-- 只有这个最好用使用内置方法  打印SQL只需要加一个setting就可以了。 mybatis的日志打印方式比较多，SLF4J | LOG4J | LOG4J2 | 
+		JDK_LOGGING | COMMONS_LOGGING | STDOUT_LOGGING | NO_LOGGING，可以根据自己的需要进行配置 -->
+		<!-- 开启延迟加载 只用在使用的时候才进行数据库访问-->
+		<setting name="lazyLoadingEnabled" value="true"/>
+		<!--
+			属性true按照 层级加载（理解  就是按照第一次查询必须要出现的东西，就是第n次select可以查出的内容
+			(discriminator属性和id result属性相同同)，false按照需求加载  
+		-->
+		<setting name="aggressiveLazyloading" value="false"></setting>
+		<!-- 配置全局缓存的开关 -->
+		<setting name="cacheEnable" value="true"/>
+		<!-- 决定框架的延迟时间 -->
+		<setting name="defaultStatementTimeout" value="100"/>
+		<!--     其他相关的属性
+		cacheEnabled					该配置影响的所有映射器中配置的缓存的全局开关。	true | false	true
+		lazyLoadingEnabled				延迟加载的全局开关。当开启时，所有关联对象都会延迟加载。 特定关联关系中可通过设置fetchType属性来覆盖该项的开关状态。	true | false	false
+		aggressiveLazyLoading			当数据库进行连级查询的时候不会使用层级加载的方法(及时查询的时候把他所直接关联的属性进行查询)
+		multipleResultSetsEnabled		是否允许单一语句返回多结果集（需要兼容驱动）。	true | false	true
+		autoMappingBehavior				指定 MyBatis 应如何自动映射列到字段或属性。 NONE 表示取消自动映射；PARTIAL 只会自动映射没有定义嵌套结果集映射的结果集。 FULL 会自动映射任意复杂的结果集（无论是否嵌套）。	NONE, PARTIAL, FULL	PARTIAL
+		defaultExecutorType				配置默认的执行器。SIMPLE 就是普通的执行器；REUSE 执行器会重用预处理语句（prepared statements）； BATCH 执行器将重用语句并执行批量更新。	SIMPLE REUSE BATCH	SIMPLE
+		defaultStatementTimeout			设置超时时间，它决定驱动等待数据库响应的秒数。	任意正整数	Not Set (null)
+		defaultFetchSize				为驱动的结果集获取数量（fetchSize）设置一个提示值。此参数只可以在查询设置中被覆盖。	任意正整数	Not Set (null)
+		safeRowBoundsEnabled			允许在嵌套语句中使用分页（RowBounds）。 If allow, set the false.	true | false	False
+		safeResultHandlerEnabled		允许在嵌套语句中使用分页（ResultHandler）。 If allow, set the false.	true | false	True
+		mapUnderscoreToCamelCase		是否开启自动驼峰命名规则（camel case）映射，即从经典数据库列名 A_COLUMN 到经典 Java 属性名 aColumn 的类似映射。	true | false	False
+		localCacheScope	MyBatis 		利用本地缓存机制（Local Cache）防止循环引用（circular references）和加速重复嵌套查询。 默认值为 SESSION，这种情况下会缓存一个会话中执行的所有查询。 若设置值为 STATEMENT，本地会话仅用在语句执行上，对相同 SqlSession 的不同调用将不会共享数据。	SESSION | STATEMENT	SESSION
+		jdbcTypeForNull					当没有为参数提供特定的 JDBC 类型时，为空值指定 JDBC 类型。 某些驱动需要指定列的 JDBC 类型，多数情况直接用一般类型即可，比如 NULL、VARCHAR 或 OTHER。	JdbcType enumeration. Most common are: NULL, VARCHAR and OTHER	OTHER
+		lazyLoadTriggerMethods			指定哪个对象的方法触发一次延迟加载。	A method name list separated by commas	equals,clone,hashCode,toString
+		defaultScriptingLanguage		指定动态 SQL 生成的默认语言。	A type alias or fully qualified class name.	org.apache.ibatis.scripting.xmltags.XMLLanguageDriver
+		callSettersOnNulls				指定当结果集中值为 null 的时候是否调用映射对象的 setter（map 对象时为 put）方法，这对于有 Map.keySet() 依赖或 null 值初始化的时候是有用的。注意基本类型（int、boolean等）是不能设置成 null 的。	true | false	false
+		 -->
+	</settings>
+	<!-- 别名:在系统的其他位置上可以用这个别名进行配置文件的配置 两种方法只能用一种 原因 文件只进行扫描一遍-->
+	<typeAliases>
+		<!-- 1.可以使用注解方法进行配置   Alias注解方法 name为将要进行扫描的包 -->
+		<!-- <package name="javabean"/>-->
+		<!-- 直接在这里面进行配置type是属性的全名称 alias 是别名称 -->
+		<typeAlias type="S_Mybatis.a_自定义typeHandler.自定义typeHandler" alias="mytypehandle"/>
+	</typeAliases>
+	<!--格式转换器 定义的转换器 可以完成java类型和jdbc类型的自动转换  一般用来自己重写数据库的映射方法-->
+	<typeHandlers>
+		<typeHandler handler="S_Mybatis.a_自定义typeHandler.自定义typeHandler" javaType="string" jdbcType="VARCHAR"/>
+		<package name="S_Mybatis.a_自定义typeHandler"/><!-- 使用注解方法加载包 自动加入对应包中有属性的名称使用xml的定义式 -->
+	</typeHandlers>
+	<objectFactory type="S_Mybatis.b_自定义工厂方法.Myfactory">
+		<property name="name" value="b_自定义工厂方法"/>
+	</objectFactory>
+	<!-- 数据库环境标签 -->
+	<environments default="myenviroment"><!-- 这个属性表明在环境变量缺省的情况下启用哪个标签 -->
+		<!-- 配置一个数据源的开始 -->
+		<environment id="myenviroment">
+			<!-- 数据库事务配置 (一般使用spring框架进行控制 之后再说)1.jdbc 2.MANAGEN(JNDI数据源中的相关事务)3.自定义 -->
+			<transactionManager type="JDBC"></transactionManager>
+			<!-- 配置数据连接信息1.UNPOOLED非连接池数据库2.POOLED链接池数据库3.JNDI 4.自定义  -->
+			<dataSource type="UNPOOLED">
+			<!-- 针对 pooled属性的：
+				poolMaximumActiveConnections 	– 在任意时间可以存在的活动（也就是正在使用）连接数量，默认值：10
+				poolMaximumIdleConnections 		– 任意时间可能存在的空闲连接数。
+				poolMaximumCheckoutTime			– 在被强制返回之前，池中连接被检出（checked out）时间，默认值：20000 毫秒（即 20 秒）
+				poolTimeToWait 					– 这是一个底层设置，如果获取连接花费的相当长的时间，它会给连接池打印状态日志并重新尝试获取一个连接（避免在误配置的情况下一直安静的失败），默认值：20000 毫秒（即 20 秒）。
+				poolPingQuery 					– 发送到数据库的侦测查询，用来检验连接是否处在正常工作秩序中并准备接受请求。默认是“NO PING QUERY SET”，这会导致多数数据库驱动失败时带有一个恰当的错误消息。
+				poolPingEnabled 				– 是否启用侦测查询。若开启，也必须使用一个可执行的 SQL 语句设置 poolPingQuery 属性（最好是一个非常快的 SQL），默认值：false。
+				poolPingConnectionsNotUsedFor 	– 配置 poolPingQuery 的使用频度。这可以被设置成匹配具体的数据库连接超时时间，来避免不必要的侦测，默认值：0（即所有连接每一时刻都被侦测 — 当然仅当 poolPingEnabled 为 true 时适用）。
+			 -->
+			 	<!-- 使用 ognl表达式的${}形式加入参数 -->
+				<property name="driver" value="${properties_driver}" />
+				<property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis" />
+				<property name="username" value="${properties_user}" />
+				<property name="password" value="14159265jkl" />
+			</dataSource>
+			<!-- 数据库事务 -->
+		</environment>
+	</environments>
+	<!-- mybatis数据库厂商标识 db_vendor 使用数据库默认规则-首先mybatis会将配置读入configuration中
+	在连接数据库后调用getDatabaseProductName（）方法获取数据库的信息，然后配置name值去做匹配来得到databaseid  -->
+	<databaseIdProvider type="DB_VENDOR">
+  		<property name="SQL Server" value="sqlserver"/>
+  		<property name="DB2" value="db2"/>        
+  		<property name="Oracle" value="oracle" />
+	</databaseIdProvider> 
+	<!-- 定义mybatis使用的映射文件 !!!!!注意这里非常容易出现错误 要使用的文件mapping一定要在这里面进行配置-->
+	<mappers>
+		<mapper resource="mapper_WaiLianJie.xml"/><!-- 使用文件进行引入 -->
+		<!--<mapper class="com.dao.mapper_SqlQianTao"/>--><!-- 使用class文件进行引入 -->
+		<!--貌似不能和mapper共存<package name="com.dao"/>使用报名进行引入-->
+		<mapper url=""/><!-- 使用url进行引用 -->
+	</mappers>
+</configuration>

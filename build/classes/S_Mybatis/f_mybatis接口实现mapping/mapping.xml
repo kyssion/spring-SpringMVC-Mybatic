@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 当使用面向接口编程的时候namespace就是定义接口的全路径 -->
+<mapper namespace="S_Mybatis.f_mybatis接口实现mapping.Myintarface">
+	<!-- 语句的id就是使用的方法名称 paramentType就是使用的参数类型 -->
+	<select id="getBeanOne" parameterType="String"></select>
+</mapper>

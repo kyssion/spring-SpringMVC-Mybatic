@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="S_Mybatis.z_z_MyBatis实例.mapping">
+	<select id="selectPeople" resultMap="getBean">
+		select name,age from people
+	</select>
+	<insert id="insertJavabean" parameterType="b_spring国际化支持.beanOne.BeanOne" useGeneratedKeys="true" keyProperty="id">
+		insert into people(id,name,age) value(#{id},#{name},#{age})
+	</insert>
+	<resultMap type="S_Mybatis.z_z_MyBatis实例.javabean.BeanOne" id="getBean">
+		<id column="name" property="name" javaType="String" jdbcType="VARCHAR"/>
+		<result column="age" property="age" javaType="int" jdbcType="VARCHAR"/>
+	</resultMap>
+</mapper>

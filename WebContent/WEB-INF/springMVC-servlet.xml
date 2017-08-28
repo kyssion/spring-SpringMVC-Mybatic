@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<context:component-scan base-package="q_springMVC.不使用注解的控制器"></context:component-scan>
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<!-- 按作用之一阻止resources阻止任意控制器被调用 -->
+	<mvc:resources location="/css/**" mapping="/css/"></mvc:resources>
+	<mvc:resources location="/*.html" mapping="/"></mvc:resources>
+	<!--在这个文件中使用的是默认的配置文件而不是在原来的配置文件中使用的那个文件 -->
+	<!-- 注意spring框架默认过滤action后缀名称的扩展映射 -->
+	<bean id="/one.action" class="q_springMVC.使用注解的控制器.Useconfig"></bean> 
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 这里使用了补充的映射方法-实现简单粗暴直接讲字符串加入进来 -->
+		<!-- 表示使用的返回值是为/WEB-INF/jsp+xxx+.jsp -->
+		<property name="prefix" value="/WEB-INF/jsp/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+</beans>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 本质上其实是指定有工厂方法动态生成的bean -->
+	
+	<!-- 1....使用构造的方法进行bean的实例化 -->
+	<bean id="constructionBean" class="f_指定spring创建bean的方法.a_使用构造方法创建.BeanOne">
+	<!-- 使用构造函数 创建一个新的bean事例 -->
+		<constructor-arg value="this is build by construction"></constructor-arg>
+	</bean>
+	<!-- 2....使用使用静态构造方法进行实例化 -->
+	<bean id="jingtaiB" class="f_指定spring创建bean的方法.b_使用工厂方法创建.静态工厂方法" 
+	factory-method="getBean">
+		<!-- 表示传入相关的工厂方法函数的相关参数 -->
+		<constructor-arg value="B"></constructor-arg>
+	</bean>
+	<!-- 使用实例工厂方法进行构造 -->
+	<!-- 实例工厂方法因为工厂方法函数使用的非静态方法所以先要在配置文件中 -->
+	<bean id="shilifactory" class="f_指定spring创建bean的方法.b_使用工厂方法创建.实例工厂方法"></bean>
+	<bean id="shiliC" factory-bean="shilifactory" factory-method="getBean">
+		<constructor-arg value="C"></constructor-arg>
+	</bean>
+</beans>
