@@ -9,6 +9,7 @@ public class JDBC_Business extends JdbcTemplate implements Business_interface{
 		// TODO Auto-generated method stub
 		String sql = "update Transfer set money=money+? where name= ? ";
 		this.update(sql, money,name);
+		
 	}
 	//传出钱
 	@Override

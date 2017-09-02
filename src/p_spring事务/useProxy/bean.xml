@@ -35,6 +35,62 @@
 			<props>
 				<!-- 这个key可以表明表示为那个方法进行增强  可以使用表示符-->
 				<prop key="t*">PROPAGATION_REQUIRED</prop>
+<!--
+五个事务隔级别分别为：lsolation的属性值
+
+1，default
+
+默认的事务隔离级别
+
+2，read_uncommitted
+
+读未提交，一个事务可以操作另外一个未提交的事务，不能避免脏读，不可重复读，幻读，隔离级别最低，并发性 能最高
+
+3，read_committed
+
+读已提交，一个事务不可以操作另外一个未提交的事务， 能防止脏读，不能避免不可重复读，幻读。
+
+4，repeatable_read
+
+能够避免脏读，不可重复读，不能避免幻读
+
+5，serializable
+
+隔离级别最高，消耗资源最低，代价最高，能够防止脏读， 不可重复读，幻读。
+
+
+七个事务的传播行为
+
+1，propagation_required
+
+如果一个事务存在，则支持当前事务，如果不存在，则创建新的事务
+
+2，propagation_supports
+
+如果一个事务存在，则支持当前事务，如果不存在，则非事务的方法运行
+
+3，propagation_mendatory man de chui
+
+如果一个事务存在，则支持当前事务，如果存在，则抛出异常
+
+4，propagation_requires_new
+
+总是要开启一个新的事务，如果事务存在，将该事务挂起
+
+5，propagation_not_supported
+
+总是非事务方法运行，并挂起所有的事务
+
+6，propagation_never
+
+总是非事务方法运行，如果事务存在则抛出异常
+
+7，propagation_nested   ne si ti d
+
+某一个事务存在，则运行在一个嵌套的事务中-->
+				
+				
+				
 			</props>
 		</property>
 	</bean>

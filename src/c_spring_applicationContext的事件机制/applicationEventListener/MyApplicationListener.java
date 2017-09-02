@@ -1,5 +1,4 @@
 package c_spring_applicationContext的事件机制.applicationEventListener;
-
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
@@ -32,7 +31,5 @@ public class MyApplicationListener implements ApplicationListener<ApplicationEve
 			((MyApplicationEvent) arg0).say();
 		}
 		//requestHandledEvent web相关的事件 只能使用 dispatcherServlet的web应用当中 当用户请求结束的时候将会自动触发
-		//
 	}
-
 }

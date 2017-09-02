@@ -19,6 +19,7 @@ public class CustomerTransfornoConfig implements Operating_interface{
 	public void setJDBC_Business(JDBC_Business jDBC_Business) {
 		this.jDBC_Business = jDBC_Business;
 	}
+	//p p gei shen
 	@Transactional(propagation=Propagation.REQUIRED,isolation=Isolation.DEFAULT)
 	@Override
 	public void transfer(String from, String to, int money) {

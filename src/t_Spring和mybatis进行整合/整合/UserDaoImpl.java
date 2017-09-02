@@ -1,8 +1,8 @@
 package t_Spring和mybatis进行整合.整合;
-import org.mybatis.spring.mapper.MapperFactoryBean;
 
 import S_Mybatis.z_z_MyBatis实例.javabean.BeanOne;
 import t_Spring和mybatis进行整合.Myinterface;
+
 //这个是真正的DAO层进行数据库的操作---需要使用需要在数据数据库中进行配置-使用单例模式
 public class UserDaoImpl extends BaseDaoImpl implements Myinterface{
 
