@@ -18,6 +18,8 @@
 	<input type="text" value="123" name="ssid"/>
 	<input type="text" value="heheheh" name="hehe"/>
 	<input type="submit" value="go"/>
+<input type="submit" value="go"/>
+<input type="submit" value="go"/>
 </form>
 </body>
 </html>
