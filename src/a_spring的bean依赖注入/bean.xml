@@ -51,7 +51,7 @@
 		<property name="beanTwo" ref="beantwo"></property>
 		<property name="string" value="java.lang.String"></property>
 	</bean>
-	<bean id="beanoneT" class="a_spring的bean依赖注入.beanOne.BeanOne" >
+	<bean id="beanoneT" class="a_spring的bean依赖注入.beanOne.BeanOne">
 		<!-- value 参数只能注入基本类型 -->
 		<!--<property name="beanTwo" value="a_spring的bean依赖注入.beanTwo.BeanTwo"></property>-->
 	</bean>
@@ -105,4 +105,5 @@
 	<!-- 这里使用了组合属性  但是要注意 属性之前的值必须保证存在  属性使用getxxx setyy为他们进行赋值操作 -->
 	<!-- <property name="xxx.yyy" value="xxx"></property>-->
 </bean>
+	<alias name="name" alias="new_name"></alias>
 </beans>

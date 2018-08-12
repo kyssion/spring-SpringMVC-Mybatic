@@ -34,7 +34,6 @@ import a_spring的bean依赖注入.beanTwo.BeanTwo;
 @WebServlet("/Myservlet")
 public class Myservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//获得依赖的bean的方法
