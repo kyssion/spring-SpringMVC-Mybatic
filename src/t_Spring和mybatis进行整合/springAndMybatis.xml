@@ -19,6 +19,9 @@
 		<property name="initialPoolSize" value="2"></property>
 		<property name="maxIdleTime" value="30"></property>
 	</bean>
+
+	<!--
+	-->
 	<!-- 使用这个方法的时候必须载入相应的spring和mybatis的整合包 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="mydatasource"></property>
