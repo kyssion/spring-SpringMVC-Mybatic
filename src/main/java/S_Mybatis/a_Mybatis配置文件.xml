@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
-<configuration>	
+<configuration>
 	<!-- 使用配置信息可以在上下文中进行配置 这里配置的信息可以在上下中使用${xx}访问到-->
 	<properties resource="jdbc.properties"><!-- 这里的第一句使用了配置文件属性这个属性会搜索一个属将配置信息传入进来效果和在文件中直接进行配置的方法是相同的 -->
 		<property name="myproperty" value="123123"/>
@@ -8,7 +7,8 @@
 	<!-- setting属性 -->
 	<settings>
 		<!-- 打印查询语句 -->
-		<setting name="logImpl" value="STDOUT_LOGGING" />
+		<setting name="logImpl" value="STDOUT_LOGGING" /><!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
 		<!-- 只有这个最好用使用内置方法  打印SQL只需要加一个setting就可以了。 mybatis的日志打印方式比较多，SLF4J | LOG4J | LOG4J2 | 
 		JDK_LOGGING | COMMONS_LOGGING | STDOUT_LOGGING | NO_LOGGING，可以根据自己的需要进行配置 -->
 		<!-- 开启延迟加载 只用在使用的时候才进行数据库访问-->
