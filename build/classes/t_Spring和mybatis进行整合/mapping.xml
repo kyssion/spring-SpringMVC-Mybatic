@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- 这里使用面向接口进行编程 -->
-<mapper namespace="t_Spring和mybatis进行整合.Myinterface">
-	<select id="getBeanOne"></select>
-	<insert id="insertOne"></insert>
-	<delete id="deleteOne"></delete>
-</mapper>

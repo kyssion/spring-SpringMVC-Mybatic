@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		<!-- 使用注解标记作为bean的配置的时候必须加上的标记表示扫描包下面所有的类见所有使用注解标记的类进行绑定 -->
+		<!-- 组成扫描 -->
+		<context:component-scan base-package="l_spring零配置"></context:component-scan>
+		<!-- 使用过滤器来指定相关的类或者方法作为bean -->
+		<!--   
+		<context:component-scan base-package="l_spring零配置">
+			-属性可以是 annotation assignable regex aspectj
+			<context:include-filter type="regex" expression=".*jkl"/>-可以作为过滤器
+			<context:exclude-filter type="regex" expression=".*jkl"/>-不能作为过滤器
+		</context:component-scan>
+		 -->
+</beans>

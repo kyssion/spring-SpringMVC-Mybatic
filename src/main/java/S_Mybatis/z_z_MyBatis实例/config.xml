@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>  
+		<setting name="logImpl" value="STDOUT_LOGGING" />
+   		<setting name="mapUnderscoreToCamelCase" value="true" />  
+	</settings>  
+	<environments default="myenviroment"><!-- 配置默认数据源 (内部environmental属性之一)-环境变量id -->
+		<environment id="myenviroment">
+			<transactionManager type="JDBC"></transactionManager>
+			<dataSource type="UNPOOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis" />
+				<property name="username" value="root" />
+				<property name="password" value="14159265jkl" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="S_Mybatis/z_z_MyBatis实例/mapping.xml"/>
+	</mappers>
+</configuration>
